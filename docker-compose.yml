@@ -1,0 +1,26 @@
+version: '2'
+services:
+    baota:
+        build: .
+        container_name: baota
+        ports:
+         - "20:20"
+         - "21:21"
+         - "10022:22"
+         - "80:80"
+         - "443:443"
+         - "888:888"
+         - "8888:8888"
+         - "8081:8081"  #web1的端口
+         - "8082:8082"  #web2的端口
+         - "8083:8083"  #web3的端口，以此类推
+        command:
+         - /bin/bash 
+         - -c 
+         - |
+           bt start 
+           /usr/sbin/sshd -D
+           sh
+        stdin_open: true
+        tty: true
+
